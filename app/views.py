@@ -8,9 +8,11 @@ from django.db.models  import Sum
 # from django.utils import timezone
 from app.models import Members, Book, Transaction
 from app.forms import IssueBookForm
-from datetime import date
+from datetime import date, datetime
+import requests
 
-# Create your views here.
+# Create your views here
+
 def index(request):
     return render(request, 'index.html')
 
@@ -123,7 +125,6 @@ def issueBook(request):
             amount_paid = request.POST.get('amount_paid')
 
             debt = Transaction.objects.filter(member_id=member_id).aggregate(totalDebt=Sum('amount_remaining')).get('totalDebt') or 0
-            print(debt)
             book = Book.objects.filter(isbn=isbn)[0]
 
             if debt>500:
@@ -136,7 +137,8 @@ def issueBook(request):
                 member_id=member_id,
                 isbn=isbn,
                 amount_paid=amount_paid,
-                amount_remaining=amount_remaining
+                amount_remaining=amount_remaining,
+                issued_date = date.today(),
                 )
                 issue_book.save()
                 return redirect('/view_issued_books/')
@@ -270,3 +272,27 @@ def delete_transaction(request, id):
 def logout_(request):
     logout(request)
     return redirect('/')
+
+def integration(request):
+    url = f' https://frappe.io/api/method/frappe-library?page=2&title=and'
+    data = requests.get(url).json()['message']
+    for d in data:
+        dateobj = datetime.strptime(d['publication_date'], '%m/%d/%Y')
+        try:
+            book = Book.objects.create(
+                bookId=d['bookID'],
+                title = d['title'],
+                authors=d['authors'],
+                average_ratings = d['average_ratings'],
+                isbn=d['isbn'],
+                isbn13=d['isbn13'],
+                language=d['language_code'],
+                num_pages = d['num_pages'],
+                ratings_count=d['ratings_count'],
+                text_reviews_count=d['text_reviews_count'],
+                publication_date=dateobj,
+                publisher=d['publisher']
+            )
+        except:
+            continue
+    return render('/view_books/')

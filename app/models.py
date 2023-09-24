@@ -36,7 +36,7 @@ class Transaction(models.Model):
     isbn =models.CharField(max_length=50)
     amount_paid = models.IntegerField()
     amount_remaining = models.IntegerField()
-    issued_date = models.DateField(auto_now=True)
+    issued_date = models.DateField(null=True)
     return_date = models.DateField(null=True, blank=True)
 
     class Meta:
