@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container">
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                {{message}}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endfor %}
+        {% endif %}
+        <div class="row">
+                <div class="col-6">
+                    <label>ID:</label>
+                </div>
+                <div class="col-6">
+                    <p>{{book.id}}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label>Book Name:</label>
+                </div>
+                <div class="col-md-6">
+                    <p>{{book.title}}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label>Authors:</label>
+                </div>
+                <div class="col-md-6">
+                    <p>{{book.authors}}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label>ISBN:</label>
+                </div>
+                <div class="col-md-6">
+                    <p>{{book.isbn}}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label>ISBN13:</label>
+                </div>
+                <div class="col-md-6">
+                    <p>{{book.isbn13}}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label>Language:</label>
+                </div>
+                <div class="col-md-6">
+                    <p>{{book.language}}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label>Publication Date:</label>
+                </div>
+                <div class="col-md-6">
+                    <p>{{book.publication_date}}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label>Publisher:</label>
+                </div>
+                <div class="col-md-6">
+                    <p>{{book.publisher}}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label>Price:</label>
+                </div>
+                <div class="col-md-6">
+                    <p>{{book.price}}</p>
+                </div>
+            </div>
+            <a href="{% url 'edit_book' book.id %}" style="width: 9rem;" class="btn btn-outline-primary mt-3">Edit Profile</a>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container align-items-center">
+    <div class="container d-flex justify-content-around">
+        <div class="card" style="width: 18rem;">
+            <img src="/media/admin.jpeg" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Admin</h5>
+              <p class="card-text">Only Admin can login.</p>
+              <a href="/admin_login/" class="btn btn-primary">Login</a>
+            </div>
+          </div>
+
+          <div class="card" style="width: 18rem;">
+            <img src="/media/member-logo.png" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Members</h5>
+              <p class="card-text">Members can login here.</p>
+              <a href="/member_login/" class="btn btn-primary">Login</a>
+            </div>
+          </div>
+    </div>
+  </div>
+{% endblock %}

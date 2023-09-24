@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block title %}Books{% endblock %}
+
+{% block content %}
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Sr No</th>
+        <th scope="col">Book ID</th>
+        <th scope="col">Book Name</th>
+        <th scope="col">Authors</th>
+        {% if admin %}
+        <th scope="col">Action</th>
+        {% endif %}
+      </tr>
+    </thead>
+    <tbody>
+      {% for book in pagination %}
+        <tr>
+            <th scope="row">{{forloop.counter}}</th>
+            <td><a href="{% url 'book_profile' book.id %}" style="text-decoration: none;">{{book.bookId}}</a></td>
+            <td>{{book.title}}</td>
+            <td>{{book.authors}}</td>
+            {% if admin %}
+            <td><a href="{% url 'delete_book' book.id %}"><button class="btn btn-danger">Delete</button></a></td>
+            {% endif %}
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<ul class="nav justify-content-center">
+    <li class="nav-item">
+      <a class="nav-link" href="/profile/">Profile</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/register/">Register as a Member</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/edit_profile/">Edit Profile</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/view_books/">View Books</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/logout/">Logout</a>
+    </li>
+</ul>
+
+{% block app_content %}{% endblock %}
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'admin_navbar.html' %}
+
+{% block title %}Transaction{% endblock %}
+
+{% block app_content %}
+<table class="table" style="text-align: center;">
+    <thead>
+      <tr>
+        <th scope="col">Sr No</th>
+        <th scope="col">Member Name</th>
+        <th scope="col">Book Name</th>
+        <th scope="col">Book ISBN</th>
+        <th scope="col">Amount Paid</th>
+        <th scope="col">Amount Remaining</th>
+        <th scope="col">Issued Date</th>
+        <th scope="col">Return Date</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for detail in details %}
+        <tr>
+            <th scope="row">{{forloop.counter}}</th>
+            <td>{{detail.0}}</td>
+            <td>{{detail.1}}</td>
+            <td>{{detail.2}}</td>
+            <td>{{detail.3}}</td>
+            <td>{{detail.4}}</td>
+            <td>{{detail.5}}</td>
+            {% if detail.6 %}
+            <td>{{detail.6}}</td>
+            {% else %}
+            <td><a href="/book_returned/{{detail.7}}"><button type="button" class="btn btn-primary">Returned</button></a></td>
+            {% endif %}
+            <td><a href="{% url 'delete_transaction' detail.7 %}"><button class="btn btn-danger">Delete</button></a></td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

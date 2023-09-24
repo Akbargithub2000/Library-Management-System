@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+<form method="post" action="/register/" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-primary" role="alert">
+            {{message}}
+        </div>
+        {% endfor %}
+    {% endif %}
+    <div class="form-group">
+      <label for="exampleInputUsername">Username</label>
+      <input type="text" class="form-control" id="exampleInputUsername" placeholder="Enter username" name="username">
+    </div>
+    <div class="form-group">
+      <label for="exampleInputName1">First Name</label>
+      <input type="text" class="form-control" id="exampleInputName1" placeholder="Enter First Name" name="first_name">
+    </div>
+    <div class="form-group">
+        <label for="exampleInputName2">Last Name</label>
+        <input type="text" class="form-control" id="exampleInputName2" placeholder="Enter Last Name" name="last_name">
+    </div>
+    <div class="form-group">
+        <label for="exampleInputEmail1">Email Address</label>
+        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter Email Address" name="email">
+        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+    </div>
+    <div class="form-group">
+        <label for="exampleInputPhone">Email Phone Number</label>
+        <input type="text" class="form-control" id="exampleInputPhone" placeholder="" name="phone_no">
+    </div>
+    <div class="form-group">
+        <label for="exampleInputFile1">Select an image</label>
+        <input type="file" class="form-control" id="exampleInputFile1" placeholder="No File Chosen" name="image">
+    </div>
+    <div class="form-group">
+        <label for="exampleInputPassword1">Password</label>
+        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Enter Password" name="password">
+    </div>
+    <div class="form-group">
+        <label for="exampleInputPassword2">Confirm Password</label>
+        <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Enter Confirm Password" name="confirm_password">
+    </div>
+      
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <hr>
+    Already have an account. <a href="/login/">Please Login</a>
+</form>
+</div>
+{% endblock %}
